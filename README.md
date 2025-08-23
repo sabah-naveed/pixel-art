@@ -1,4 +1,4 @@
-# Pixelfy Tool
+# Pixelfy Tool 👾
 
 A Python tool that converts images to pixelated versions by averaging colors in 5x5 pixel blocks.
 
