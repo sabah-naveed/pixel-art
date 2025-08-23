@@ -21,6 +21,25 @@ def average_color(block):
     """
     # Calculate mean across all pixels in the block
     avg_color = np.mean(block, axis=(0, 1))
+    
+    # For RGBA images, handle transparency properly
+    if block.shape[2] == 4:
+        # If all pixels in the block are fully transparent, keep it transparent
+        if np.all(block[:, :, 3] == 0):
+            return (0, 0, 0, 0)
+        
+        # For partially transparent blocks, calculate weighted average
+        # Only consider non-transparent pixels for color averaging
+        non_transparent = block[:, :, 3] > 0
+        if np.any(non_transparent):
+            # Average color of non-transparent pixels
+            color_avg = np.mean(block[non_transparent, :3], axis=0)
+            # Average alpha of all pixels in the block
+            alpha_avg = np.mean(block[:, :, 3])
+            return tuple(map(int, [*color_avg, alpha_avg]))
+        else:
+            return (0, 0, 0, 0)
+    
     return tuple(map(int, avg_color))
 
 
@@ -42,9 +61,12 @@ def pixelfy_image(image_path, output_path=None, block_size=5):
     except Exception as e:
         raise ValueError(f"Could not open image {image_path}: {e}")
     
-    # Convert to RGB if necessary (handles RGBA, grayscale, etc.)
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    # Convert to RGBA if necessary (preserves transparency)
+    if img.mode not in ['RGB', 'RGBA']:
+        img = img.convert('RGBA')
+    elif img.mode == 'RGB':
+        # Convert RGB to RGBA to handle transparency consistently
+        img = img.convert('RGBA')
     
     # Convert to numpy array for easier processing
     img_array = np.array(img)
@@ -68,15 +90,15 @@ def pixelfy_image(image_path, output_path=None, block_size=5):
             output_array[y:y_end, x:x_end] = avg_color
     
     # Convert back to PIL Image
-    output_img = Image.fromarray(output_array.astype(np.uint8))
+    output_img = Image.fromarray(output_array.astype(np.uint8), 'RGBA')
     
     # Generate output path if not provided
     if output_path is None:
         base_name = os.path.splitext(image_path)[0]
         output_path = f"{base_name}_pixelfied.png"
     
-    # Save the result
-    output_img.save(output_path)
+    # Save the result with transparency support
+    output_img.save(output_path, 'PNG')
     print(f"Pixelfied image saved to: {output_path}")
     
     return output_path
