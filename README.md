@@ -7,6 +7,7 @@ A Python tool that converts images to pixelated versions by averaging colors in 
 - Converts any image format to a pixelfied version
 - Uses 5x5 pixel blocks by default (configurable)
 - Averages RGB colors within each block
+- **Preserves transparency** - transparent backgrounds stay transparent
 - Handles various image formats (JPEG, PNG, GIF, etc.)
 - Command-line interface with options
 
@@ -56,11 +57,12 @@ python main.py input_image.jpg -o output_image.png -b 8
 
 ## How It Works
 
-1. The tool loads the input image and converts it to RGB format
+1. The tool loads the input image and converts it to RGBA format to preserve transparency
 2. It divides the image into blocks of the specified size (default 5x5 pixels)
-3. For each block, it calculates the average RGB color of all pixels in that block
-4. It replaces the entire block with the average color
-5. The result is saved as a new image
+3. For each block, it calculates the average color of all pixels in that block
+4. For transparent areas, it properly handles alpha channel averaging
+5. It replaces the entire block with the average color (including transparency)
+6. The result is saved as a new PNG image with transparency support
 
 ## Example
 
