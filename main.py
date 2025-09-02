@@ -1,6 +1,15 @@
 # python3 -m venv path/to/venv
 # source path/to/venv/bin/activate
 # python3 -m pip install xyz
+
+"""
+TODO: add frontend, preferably in a web app thats easily deployable
+TODO: add brush in frontend to edit pixel colors, eyedrop and color picker of colors found in smart mode
+TODO: save as different formats
+TODO: google ads on the frontend
+"""
+
+
 """
 Pixelfy Tool - Converts images to pixelated versions by averaging colors in 5x5 pixel blocks
 """
@@ -114,6 +123,25 @@ def pixelfy_image(image_path, output_path=None, block_size=5, smart=False, max_c
         img = Image.open(image_path)
     except Exception as e:
         raise ValueError(f"Could not open image {image_path}: {e}")
+    
+    # Fix image orientation based on EXIF data
+    try:
+        # Get EXIF data
+        exif = img._getexif()
+        if exif is not None:
+            # Orientation tag
+            orientation = exif.get(274)  # 274 is the orientation tag
+            if orientation is not None:
+                # Rotate image based on orientation
+                if orientation == 3:
+                    img = img.rotate(180, expand=True)
+                elif orientation == 6:
+                    img = img.rotate(270, expand=True)
+                elif orientation == 8:
+                    img = img.rotate(90, expand=True)
+    except Exception:
+        # If EXIF handling fails, continue without rotation
+        pass
     
     # Convert to RGBA if necessary (preserves transparency)
     if img.mode not in ['RGB', 'RGBA']:

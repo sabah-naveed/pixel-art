@@ -1,6 +1,6 @@
-# Pixelfy Tool 👾
+# Pixelfy 👾 - Pixel Art Generator
 
-A Python tool that converts images to pixelated versions by averaging colors in 5x5 pixel blocks.
+A powerful tool that converts images to pixelated versions by averaging colors in customizable pixel blocks. Available as both a command-line tool and a modern web application.
 
 ## Features
 
@@ -9,10 +9,14 @@ A Python tool that converts images to pixelated versions by averaging colors in 
 - Averages RGB colors within each block
 - **Smart pixelation** - reduces color palette for more cohesive look
 - **Preserves transparency** - transparent backgrounds stay transparent
+- **Modern web interface** - drag-and-drop upload with real-time preview
+- **Color palette extraction** - view and interact with generated colors
 - Handles various image formats (JPEG, PNG, GIF, etc.)
 - Command-line interface with options
 
 ## Installation
+
+### Command Line Tool
 
 1. Install the required dependencies:
 
@@ -20,9 +24,67 @@ A Python tool that converts images to pixelated versions by averaging colors in 
 pip install -r requirements.txt
 ```
 
+### Web Application (React + Flask)
+
+#### Quick Start
+
+```bash
+./start.sh
+```
+
+#### Manual Setup
+
+1. **Install Node.js dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+2. **Build React app:**
+
+   ```bash
+   npm run build
+   ```
+
+3. **Install Python dependencies:**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Start the server:**
+
+   ```bash
+   python app.py
+   ```
+
+5. **Open your browser and go to `http://localhost:5001`**
+
+#### Development Mode
+
+For development with hot reloading:
+
+```bash
+npm start  # Runs React dev server on port 3000
+# In another terminal:
+python app.py  # Runs Flask API on port 5001
+```
+
 ## Usage
 
-### Basic Usage
+### Web Application
+
+The web app provides a modern, user-friendly interface:
+
+1. **Drag & Drop**: Simply drag your image onto the upload area
+2. **Adjust Settings**: Use sliders to customize block size and color reduction
+3. **Real-time Preview**: See your original and processed images side by side
+4. **Color Palette**: View and interact with the generated color palette
+5. **Download**: Save your pixelated masterpiece with one click
+
+### Command Line Tool
+
+#### Basic Usage
 
 ```bash
 python main.py input_image.jpg
@@ -92,7 +154,25 @@ The tool will create a pixelated effect where each 5x5 pixel square is replaced 
 
 ## Requirements
 
+### Command Line Tool
+
 - Python 3.6+
 - Pillow (PIL)
 - NumPy
 - scikit-learn (for smart pixelation)
+
+### Web Application
+
+- Python 3.6+
+- Node.js 16+
+- npm or yarn
+- All Python dependencies from requirements.txt
+- All Node.js dependencies from package.json
+
+## Deployment
+
+For deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## Contributing
+
+Feel free to submit issues and enhancement requests!

@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-success-500 to-success-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .card {
+    @apply bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .upload-area {
+    @apply border-4 border-dashed border-primary-300 rounded-2xl p-16 bg-primary-50/30 transition-all duration-300 cursor-pointer hover:border-primary-400 hover:bg-primary-100/50 hover:-translate-y-1;
+  }
+
+  .upload-area.dragover {
+    @apply border-success-400 bg-success-100/50 scale-105;
+  }
+
+  .color-swatch {
+    @apply w-12 h-12 rounded-lg border-2 border-white shadow-lg cursor-pointer transition-all duration-300 hover:scale-110 hover:shadow-xl relative;
+  }
+
+  .color-swatch.selected {
+    @apply border-primary-500 scale-125 shadow-glow;
+  }
+
+  .range-slider {
+    @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+  }
+
+  .range-slider::-webkit-slider-thumb {
+    @apply appearance-none w-6 h-6 bg-primary-500 rounded-full shadow-lg cursor-pointer;
+  }
+
+  .range-slider::-moz-range-thumb {
+    @apply w-6 h-6 bg-primary-500 rounded-full border-0 shadow-lg cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-primary {
+    @apply bg-gradient-to-br from-primary-500 via-secondary-500 to-primary-600;
+  }
+
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+}
