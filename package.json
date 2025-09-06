@@ -1,30 +1,31 @@
 {
-  "name": "pixelfy-frontend",
+  "name": "pixelfy-vercel",
   "version": "1.0.0",
-  "description": "Pixelfy - Pixel Art Generator Frontend",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "axios": "^1.4.0",
-    "lucide-react": "^0.263.1"
-  },
+  "description": "Pixelfy image processing app with Vercel serverless functions",
+  "main": "index.js",
   "scripts": {
+    "dev": "react-scripts start",
+    "build": "npm run build:react",
+    "build:react": "react-scripts build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "axios": "^1.6.0",
+    "lucide-react": "^0.294.0",
+    "sharp": "^0.32.6",
+    "jimp": "^0.22.10",
+    "formidable": "^3.5.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31"
   },
   "browserslist": {
     "production": [
@@ -37,11 +38,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.3.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.24"
-  },
-  "proxy": "http://localhost:5001"
+  }
 }
