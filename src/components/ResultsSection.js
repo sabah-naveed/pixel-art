@@ -24,7 +24,7 @@ const ResultsSection = ({ results, colorPalette, onDownload }) => {
           <div className="p-6">
             <div className="relative">
               <img
-                src={`data:image/png;base64,${results.original}`}
+                src={results.original}
                 alt="Original"
                 className="w-full h-auto rounded-lg shadow-lg"
                 style={{ imageOrientation: "from-image" }}
@@ -56,7 +56,7 @@ const ResultsSection = ({ results, colorPalette, onDownload }) => {
           <div className="p-6">
             <div className="relative">
               <img
-                src={`data:image/png;base64,${results.processed}`}
+                src={results.processed}
                 alt="Pixelfied"
                 className="w-full h-auto rounded-lg shadow-lg"
                 style={{ imageOrientation: "from-image" }}

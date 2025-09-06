@@ -1,0 +1,17 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="url(#gradient)"/>
+  <g transform="translate(128, 128)">
+    <!-- Pixel art style palette icon -->
+    <rect x="0" y="0" width="64" height="64" fill="#6c5ce7" rx="8"/>
+    <rect x="16" y="16" width="16" height="16" fill="#a29bfe" rx="2"/>
+    <rect x="40" y="16" width="16" height="16" fill="#00b894" rx="2"/>
+    <rect x="16" y="40" width="16" height="16" fill="#74b9ff" rx="2"/>
+    <rect x="40" y="40" width="16" height="16" fill="#fdcb6e" rx="2"/>
+  </g>
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a29bfe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

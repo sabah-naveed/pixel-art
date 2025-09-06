@@ -17,7 +17,7 @@ export const useImageProcessor = () => {
       formData.append("smartMode", settings.smartMode);
       formData.append("maxColors", settings.maxColors);
 
-      const response = await axios.post("/upload", formData, {
+      const response = await axios.post("/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -31,8 +31,8 @@ export const useImageProcessor = () => {
         });
         setCurrentUniqueId(response.data.unique_id);
 
-        // Load color palette
-        await loadColorPalette(response.data.unique_id);
+        // Extract colors from the processed image data
+        await extractColorsFromImage(response.data.processed);
       } else {
         throw new Error(response.data.error || "Processing failed");
       }
@@ -46,33 +46,65 @@ export const useImageProcessor = () => {
     }
   }, []);
 
-  const loadColorPalette = useCallback(async (uniqueId) => {
+  const extractColorsFromImage = useCallback(async (imageDataUrl) => {
     try {
-      const response = await axios.get(`/api/colors/${uniqueId}`);
-      if (response.data.colors) {
-        setColorPalette(response.data.colors);
-      }
+      // Create a canvas to extract colors from the image
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      return new Promise((resolve) => {
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const pixels = imageData.data;
+          const colorMap = new Map();
+          
+          // Extract unique colors
+          for (let i = 0; i < pixels.length; i += 4) {
+            const r = pixels[i];
+            const g = pixels[i + 1];
+            const b = pixels[i + 2];
+            const a = pixels[i + 3];
+            
+            // Skip transparent pixels
+            if (a > 0) {
+              const colorKey = `${r},${g},${b}`;
+              if (!colorMap.has(colorKey)) {
+                colorMap.set(colorKey, { r, g, b });
+              }
+            }
+          }
+          
+          const colors = Array.from(colorMap.values());
+          setColorPalette(colors);
+          resolve(colors);
+        };
+        
+        img.src = imageDataUrl;
+      });
     } catch (error) {
-      console.error("Failed to load color palette:", error);
+      console.error("Failed to extract colors:", error);
+      setColorPalette([]);
     }
   }, []);
 
   const downloadImage = useCallback(async () => {
-    if (!currentUniqueId) return;
+    if (!results?.processed) return;
 
     try {
-      const response = await fetch(`/download/${currentUniqueId}`);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Download failed");
-      }
-
+      // Convert base64 data URL to blob
+      const response = await fetch(results.processed);
       const blob = await response.blob();
+      
+      // Create download link
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "pixelfied_image.png";
+      link.download = `pixelfied_${results.filename || 'image'}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -81,7 +113,7 @@ export const useImageProcessor = () => {
       console.error("Download error:", error);
       throw error;
     }
-  }, [currentUniqueId]);
+  }, [results]);
 
   const reset = useCallback(() => {
     setResults(null);
