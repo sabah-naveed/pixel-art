@@ -49,27 +49,27 @@ export const useImageProcessor = () => {
   const extractColorsFromImage = useCallback(async (imageDataUrl) => {
     try {
       // Create a canvas to extract colors from the image
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
       const img = new Image();
-      
+
       return new Promise((resolve) => {
         img.onload = () => {
           canvas.width = img.width;
           canvas.height = img.height;
           ctx.drawImage(img, 0, 0);
-          
+
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const pixels = imageData.data;
           const colorMap = new Map();
-          
+
           // Extract unique colors
           for (let i = 0; i < pixels.length; i += 4) {
             const r = pixels[i];
             const g = pixels[i + 1];
             const b = pixels[i + 2];
             const a = pixels[i + 3];
-            
+
             // Skip transparent pixels
             if (a > 0) {
               const colorKey = `${r},${g},${b}`;
@@ -78,12 +78,12 @@ export const useImageProcessor = () => {
               }
             }
           }
-          
+
           const colors = Array.from(colorMap.values());
           setColorPalette(colors);
           resolve(colors);
         };
-        
+
         img.src = imageDataUrl;
       });
     } catch (error) {
@@ -99,12 +99,16 @@ export const useImageProcessor = () => {
       // Convert base64 data URL to blob
       const response = await fetch(results.processed);
       const blob = await response.blob();
-      
+
       // Create download link
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `pixelfied_${results.filename || 'image'}.png`;
+
+      // Generate filename without duplicate extension
+      const originalFilename = results.filename || "image";
+      const filenameWithoutExt = originalFilename.replace(/\.[^/.]+$/, ""); // Remove existing extension
+      link.download = `pixelfied_${filenameWithoutExt}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
