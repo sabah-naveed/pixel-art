@@ -22,14 +22,13 @@ const ResultsSection = ({ results, colorPalette, onDownload }) => {
             </div>
           </div>
           <div className="p-6">
-            <div className="relative group">
+            <div className="relative">
               <img
                 src={`data:image/png;base64,${results.original}`}
                 alt="Original"
-                className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
+                className="w-full h-auto rounded-lg shadow-lg"
                 style={{ imageOrientation: "from-image" }}
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg" />
             </div>
             <p className="text-sm text-gray-600 mt-3 text-center">
               {results.filename}
@@ -55,14 +54,13 @@ const ResultsSection = ({ results, colorPalette, onDownload }) => {
             </div>
           </div>
           <div className="p-6">
-            <div className="relative group">
+            <div className="relative">
               <img
                 src={`data:image/png;base64,${results.processed}`}
                 alt="Pixelfied"
-                className="w-full h-auto rounded-lg shadow-lg transition-transform group-hover:scale-105"
+                className="w-full h-auto rounded-lg shadow-lg"
                 style={{ imageOrientation: "from-image" }}
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg" />
             </div>
             <div className="mt-4 flex justify-center">
               <button onClick={onDownload} className="btn-primary">

@@ -24,13 +24,31 @@ const UploadArea = ({ onFileSelect }) => {
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       const file = files[0];
-      setSelectedFile(file);
 
-      // Create preview URL
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
+      // Validate file type before showing preview
+      const allowedTypes = [
+        "image/jpeg",
+        "image/jpg",
+        "image/png",
+        "image/gif",
+        "image/bmp",
+        "image/webp",
+      ];
 
-      onFileSelect(file);
+      if (allowedTypes.includes(file.type)) {
+        setSelectedFile(file);
+
+        // Create preview URL
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
+
+        onFileSelect(file);
+      } else {
+        // Clear any previous selection
+        clearSelection();
+        // Let the parent component handle the error
+        onFileSelect(file);
+      }
     }
   };
 
@@ -38,13 +56,31 @@ const UploadArea = ({ onFileSelect }) => {
     const files = e.target.files;
     if (files.length > 0) {
       const file = files[0];
-      setSelectedFile(file);
 
-      // Create preview URL with proper orientation
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
+      // Validate file type before showing preview
+      const allowedTypes = [
+        "image/jpeg",
+        "image/jpg",
+        "image/png",
+        "image/gif",
+        "image/bmp",
+        "image/webp",
+      ];
 
-      onFileSelect(file);
+      if (allowedTypes.includes(file.type)) {
+        setSelectedFile(file);
+
+        // Create preview URL with proper orientation
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
+
+        onFileSelect(file);
+      } else {
+        // Clear any previous selection
+        clearSelection();
+        // Let the parent component handle the error
+        onFileSelect(file);
+      }
     }
   };
 
@@ -73,7 +109,7 @@ const UploadArea = ({ onFileSelect }) => {
           onDrop={handleDrop}
           onClick={handleClick}
         >
-          <div className="text-center">
+          <div className="text-center flex flex-col items-center justify-center h-full">
             <div className="mb-6">
               {isDragOver ? (
                 <Cloud className="h-16 w-16 text-success-500 mx-auto animate-bounce-gentle" />

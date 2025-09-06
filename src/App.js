@@ -102,25 +102,27 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-500 via-secondary-500 to-primary-600">
+    <div className="min-h-screen bg-gray-900">
       {/* Navigation */}
-      <nav className="bg-black/20 backdrop-blur-md border-b border-white/10">
+      <nav className="bg-gray-800/50 backdrop-blur-md border-b border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <Palette className="h-8 w-8 text-white" />
-              <span className="text-xl font-bold text-white">Pixelfy 👾</span>
+              <img src="/next.png" alt="Pixelfy Logo" className="h-8 w-8" />
+              <span className="text-xl font-bold text-white pixel-text">
+                Pixelfy
+              </span>
             </div>
             <div className="flex space-x-4">
               <a
                 href="#about"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
               >
                 About
               </a>
               <a
                 href="#contact"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
               >
                 Contact
               </a>
@@ -133,10 +135,12 @@ function App() {
       <div className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in-up">
-            Transform Your Images Into{" "}
-            <span className="text-gradient">Pixel Art</span>
+            Transform Your Images Into
           </h1>
-          <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+          <h2 className="text-6xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-100">
+            <span className="pixel-text sheen-animation">Pixel Art</span>
+          </h2>
+          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
             Upload any image and watch it transform into beautiful pixelated
             artwork with our advanced algorithms.
           </p>
@@ -174,44 +178,44 @@ function App() {
       )}
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white/10 backdrop-blur-sm">
+      <section id="about" className="py-20 bg-gray-800/30 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white text-center mb-16">
             About Pixelfy
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-white/20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <div className="bg-purple-600/30 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Image className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">
                 Block Processing
               </h3>
-              <p className="text-white/80">
+              <p className="text-gray-300">
                 Advanced algorithms that process images in customizable pixel
                 blocks for perfect pixelation.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-white/20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <div className="bg-purple-600/30 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Sparkles className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">
                 Smart Color Reduction
               </h3>
-              <p className="text-white/80">
+              <p className="text-gray-300">
                 AI-powered color clustering that creates cohesive pixel art with
                 fewer distinct colors.
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-white/20 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <div className="bg-purple-600/30 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <Pipette className="h-10 w-10 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">
                 Transparency Support
               </h3>
-              <p className="text-white/80">
+              <p className="text-gray-300">
                 Full support for transparent backgrounds and alpha channels in
                 your pixel art.
               </p>
@@ -221,9 +225,9 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/20 backdrop-blur-md border-t border-white/10 py-8">
+      <footer className="bg-gray-800/50 backdrop-blur-md border-t border-gray-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-white/60">
+          <p className="text-gray-400">
             © 2024 Pixelfy. Made with ❤️ for pixel art enthusiasts.
           </p>
         </div>

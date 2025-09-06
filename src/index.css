@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jacquard+24&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,17 +10,40 @@
   }
 
   body {
-    font-family: "Inter", sans-serif;
+    font-family: "Jersey 15", sans-serif;
+    background-color: #1a1a1a;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1;
+    background: linear-gradient(
+      90deg,
+      rgb(225, 106, 161),
+      rgb(208, 104, 172),
+      rgb(194, 103, 181),
+      rgb(175, 102, 194),
+      rgb(157, 101, 206),
+      rgb(166, 99, 221),
+      rgb(179, 98, 233),
+      rgb(187, 97, 243)
+    );
+    @apply text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex items-center justify-center;
   }
 
   .btn-secondary {
-    @apply bg-gradient-to-r from-success-500 to-success-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1;
+    background: linear-gradient(
+      90deg,
+      rgb(225, 106, 161),
+      rgb(208, 104, 172),
+      rgb(194, 103, 181),
+      rgb(175, 102, 194),
+      rgb(157, 101, 206),
+      rgb(166, 99, 221),
+      rgb(179, 98, 233),
+      rgb(187, 97, 243)
+    );
+    @apply text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex items-center justify-center;
   }
 
   .card {
@@ -60,11 +84,52 @@
     @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
   }
 
+  .pixel-text {
+    font-family: "Jersey 15", sans-serif;
+  }
+
+  .jersey-text {
+    font-family: "Jersey 15", sans-serif;
+  }
+
   .bg-gradient-primary {
     @apply bg-gradient-to-br from-primary-500 via-secondary-500 to-primary-600;
   }
 
   .glass-effect {
     @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .sheen-animation {
+    position: relative;
+    background: linear-gradient(
+      90deg,
+      rgb(225, 106, 161),
+      rgb(208, 104, 172),
+      rgb(194, 103, 181),
+      rgb(175, 102, 194),
+      rgb(157, 101, 206),
+      rgb(166, 99, 221),
+      rgb(179, 98, 233),
+      rgb(187, 97, 243),
+      #ffffff
+    );
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: sheen 3s ease-in-out forwards;
+    filter: drop-shadow(0 0 20px rgba(56, 223, 106, 0.2))
+      drop-shadow(0 0 40px rgba(255, 255, 255, 0.2))
+      drop-shadow(0 0 60px rgba(255, 255, 255, 0.4));
+  }
+
+  @keyframes sheen {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
 }
