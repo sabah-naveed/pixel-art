@@ -1,6 +1,6 @@
 # Pixelfy - Vercel Serverless Version
 
-This is the serverless version of Pixelfy, converted from Flask to JavaScript serverless functions for deployment on Vercel. (deploy)
+This is the serverless version of Pixelfy, converted from Flask to JavaScript serverless functions for deployment on Vercel.
 
 ## Features
 
@@ -13,14 +13,12 @@ This is the serverless version of Pixelfy, converted from Flask to JavaScript se
 ## Tech Stack
 
 ### Frontend
-
 - React 18
 - Tailwind CSS
 - Lucide React (icons)
 - Axios (HTTP requests)
 
 ### Backend (Serverless)
-
 - Vercel Functions
 - Sharp (image processing)
 - Formidable (file upload handling)
@@ -43,43 +41,41 @@ This is the serverless version of Pixelfy, converted from Flask to JavaScript se
 ## Deployment
 
 ### Prerequisites
-
 - Node.js 18+
 - Vercel CLI (`npm i -g vercel`)
 
 ### Deploy to Vercel
 
 1. **Install dependencies:**
-
    ```bash
    npm install
    ```
-2. **Build the React app:**
 
+2. **Build the React app:**
    ```bash
    npm run build
    ```
-3. **Deploy to Vercel:**
 
+3. **Deploy to Vercel:**
    ```bash
    vercel
    ```
+
 4. **Follow the prompts** to link your project and deploy
 
 ### Local Development
 
 1. **Install dependencies:**
-
    ```bash
    npm install
    ```
-2. **Start development server:**
 
+2. **Start development server:**
    ```bash
    npm run dev
    ```
-3. **Or use Vercel CLI for local development:**
 
+3. **Or use Vercel CLI for local development:**
    ```bash
    vercel dev
    ```
@@ -87,7 +83,6 @@ This is the serverless version of Pixelfy, converted from Flask to JavaScript se
 ## Configuration
 
 The `vercel.json` file configures:
-
 - Build settings for React app
 - API routes
 - Function timeouts
@@ -110,7 +105,6 @@ The `vercel.json` file configures:
 ## Migration Notes
 
 If migrating from the Flask version:
-
 1. Update API endpoints from `/upload` to `/api/upload`
 2. Remove file storage dependencies
 3. Update download logic to use processed image data
@@ -129,6 +123,5 @@ If migrating from the Flask version:
 ### Debug Mode
 
 Enable debug logging by setting environment variables in Vercel dashboard:
-
 - `DEBUG=true`
 - `NODE_ENV=development`

@@ -1,0 +1,18 @@
+{
+  "short_name": "Pixelfy",
+  "name": "Pixelfy - Pixel Art Generator",
+  "description": "Transform your images into beautiful pixelated artwork with advanced algorithms",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#6c5ce7",
+  "background_color": "#ffffff",
+  "categories": ["art", "design", "utilities"],
+  "lang": "en"
+}
